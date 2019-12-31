@@ -1,0 +1,190 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CFN Template for sls-ERequestDispatchListener-dev",
+  "Resources": {
+    "ServerlessDashEDispatchRequestListenerLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-ERequestDispatchListener-dev"
+      }
+    },
+    "IamRoleLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "dev",
+                  "sls-ERequestDispatchListener",
+                  "lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sls-ERequestDispatchListener-dev:*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sls-ERequestDispatchListener-dev:*:*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "kinesis:GetRecords",
+                    "kinesis:GetShardIterator",
+                    "kinesis:DescribeStream",
+                    "kinesis:ListStreams"
+                  ],
+                  "Resource": [
+                    "arn:aws:kinesis:us-east-1:377558703253:stream/CustomerNotificationMgmtEvents_Stage"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": {
+          "Fn::Join": [
+            "-",
+            [
+              "sls-ERequestDispatchListener",
+              "dev",
+              "us-east-1",
+              "lambdaRole"
+            ]
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonKinesisReadOnlyAccess",
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "ServerlessDashEDispatchRequestListenerLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "edispatchlistener",
+          "S3Key": "serverless/sls-ERequestDispatchListener/dev/1576584518576-2019-12-17T12:08:38.576Z/bin/release/netcoreapp2.1/deploy-package.zip"
+        },
+        "FunctionName": "sls-ERequestDispatchListener-dev",
+        "Handler": "EDispatchListener::EDispatchListener.LambdaEntryPoint::FunctionHandlerAsync",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "dotnetcore2.1",
+        "Timeout": 30,
+        "Description": "CustomerNotification Kinesis Stream Processor - Owner CloseLoop",
+        "Environment": {
+          "Variables": {
+            "ASPNETCORE_ENVIRONMENT": "DEV"
+          }
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            "sg-006c7467"
+          ],
+          "SubnetIds": [
+            "subnet-1f796068",
+            "subnet-e6ebb2cd"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ServerlessDashEDispatchRequestListenerLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "ServerlessDashEDispatchRequestListenerLambdaVersionb3mlv20seDp8Spw1GD6Ol24slJm9XSEtBgkYyHSvjrY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ServerlessDashEDispatchRequestListenerLambdaFunction"
+        },
+        "CodeSha256": "Gj1s9tz7buP9Oq053zYknVT+ZNuSL2ddIHBVYS+ORCo=",
+        "Description": "CustomerNotification Kinesis Stream Processor - Owner CloseLoop"
+      }
+    },
+    "ServerlessDashEDispatchRequestListenerEventSourceMappingKinesisCustomerNotificationMgmtEventsStage": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "DependsOn": "IamRoleLambdaExecution",
+      "Properties": {
+        "BatchSize": 100,
+        "EventSourceArn": "arn:aws:kinesis:us-east-1:377558703253:stream/CustomerNotificationMgmtEvents_Stage",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ServerlessDashEDispatchRequestListenerLambdaFunction",
+            "Arn"
+          ]
+        },
+        "StartingPosition": "LATEST",
+        "Enabled": "True"
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": "edispatchlistener"
+    },
+    "ServerlessDashEDispatchRequestListenerLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ServerlessDashEDispatchRequestListenerLambdaVersionb3mlv20seDp8Spw1GD6Ol24slJm9XSEtBgkYyHSvjrY"
+      }
+    }
+  }
+}

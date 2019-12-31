@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Backups\\KinesisListener\\KinesisListener\\KinesisListener.csproj": {}
+  },
+  "projects": {
+    "D:\\Backups\\KinesisListener\\KinesisListener\\KinesisListener.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Backups\\KinesisListener\\KinesisListener\\KinesisListener.csproj",
+        "projectName": "KinesisListener",
+        "projectPath": "D:\\Backups\\KinesisListener\\KinesisListener\\KinesisListener.csproj",
+        "packagesPath": "D:\\Users\\jpaul\\.nuget\\packages\\",
+        "outputPath": "D:\\Backups\\KinesisListener\\KinesisListener\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\Users\\jpaul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://agero-ops.pkgs.visualstudio.com/_packaging/arch-feed/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.3.103.45, )"
+            },
+            "Amazon.Lambda.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Amazon.Lambda.KinesisEvents": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Amazon.Lambda.Logging.AspNetCore": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Amazon.Lambda.Serialization.Json": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

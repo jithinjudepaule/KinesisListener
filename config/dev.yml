@@ -1,0 +1,20 @@
+envvar:
+  ASPNETCORE_ENVIRONMENT: DEV
+
+setupvar:
+  region: us-east-1
+  name: kinesisListener
+  environmentTag: DEV
+  application: 
+  businessTeam: 
+  technicalTeam: 
+  ageroService: 
+  owner: 
+  kinesisStreamResource: "arn:aws:kinesis:us-east-1:" 
+  vpc:
+    securityGroupIds:
+      - sg-
+    subnetIds:
+      - subnet-
+      - subnet-
+  s3bucket: xx

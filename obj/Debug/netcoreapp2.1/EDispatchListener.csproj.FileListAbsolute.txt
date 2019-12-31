@@ -1,0 +1,9 @@
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\Debug\netcoreapp2.1\EDispatchListener.deps.json
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\Debug\netcoreapp2.1\EDispatchListener.dll
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\Debug\netcoreapp2.1\EDispatchListener.pdb
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.csprojAssemblyReference.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.csproj.CoreCompileInputs.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.AssemblyInfoInputs.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.AssemblyInfo.cs
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.dll
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\Debug\netcoreapp2.1\EDispatchListener.pdb

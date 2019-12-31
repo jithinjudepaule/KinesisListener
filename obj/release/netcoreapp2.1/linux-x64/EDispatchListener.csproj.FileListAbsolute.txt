@@ -1,0 +1,11 @@
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\release\netcoreapp2.1\linux-x64\EDispatchListener.deps.json
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\release\netcoreapp2.1\linux-x64\EDispatchListener.runtimeconfig.json
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\release\netcoreapp2.1\linux-x64\EDispatchListener.runtimeconfig.dev.json
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\release\netcoreapp2.1\linux-x64\EDispatchListener.dll
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\bin\release\netcoreapp2.1\linux-x64\EDispatchListener.pdb
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.csprojAssemblyReference.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.csproj.CoreCompileInputs.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.AssemblyInfoInputs.cache
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.AssemblyInfo.cs
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.dll
+D:\EDispatchListener\EDispatchRequestListener\EDispatchListener\obj\release\netcoreapp2.1\linux-x64\EDispatchListener.pdb

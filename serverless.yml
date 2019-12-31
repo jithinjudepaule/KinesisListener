@@ -1,0 +1,43 @@
+service: sls-App
+ 
+provider:
+  name: aws
+  runtime: dotnetcore2.1
+  region: ${self:custom.setupvars.region}
+  vpc: ${self:custom.setupvars.vpc}   # Service wide settings.
+  iamManagedPolicies: 
+     - arn:aws:iam::aws:policy/AmazonKinesisReadOnlyAccess
+  stackTags:    # IMPORTANT - MUST BE DEFINED TO SET TAGS ON LAMBDA FUNCTIONS AND ALL THE RESOURCES
+    Name: ${self:custom.setupvars.name}
+    Environment: ${self:custom.setupvars.environmentTag}
+    Application: ${self:custom.setupvars.application}
+    BusinessTeam: ${self:custom.setupvars.businessTeam}
+    TechnicalTeam: ${self:custom.setupvars.technicalTeam}
+    AgeroService: ${self:custom.setupvars.ageroService}
+    Owner: ${self:custom.setupvars.owner}
+  deploymentBucket: ${self:custom.setupvars.s3bucket} # IMPORTANT!!! : Do not change or remove this setting once deployed as it sets cannot read the existing Deployments for rollback/remove
+
+custom:
+  stage: ${opt:stage} #Note: Avoid using default as developers can lapse in specifying and would update wrong environment.
+  setupvars: ${file(./config/${self:custom.stage}.yml):setupvar}
+  envvars: ${file(./config/${self:custom.stage}.yml):envvar}
+package:
+  artifact: bin/release/netcoreapp2.1/deploy-package.zip
+  
+functions:
+  serverless-EDispatchRequestListener:
+    name: ${self:service}-${opt:stage}
+    handler: KinesisListener::KinesisListener.LambdaEntryPoint::FunctionHandlerAsync
+    description: CustomerNotification Kinesis Stream Processor - Owner ${self:provider.stackTags.Owner}
+    timeout: 30
+    environment: ${self:custom.envvars}
+      
+    events:
+      - stream:
+          arn: ${self:custom.setupvars.kinesisStreamResource}
+          batchSize: 100
+          startingPosition: LATEST
+          enabled: true
+    
+resources:
+  Description: CFN Template for ${self:service}-${opt:stage}
