@@ -8,8 +8,6 @@ namespace EDispatchListener.models
     {
         public string TraceId { get; set; }
         public EventDataDTO Event { get; set; }
-        public CustomerDTO Customer { get; set; }
-        public CaseDataDTO CaseData { get; set; }
         public LambdaData LambdaData { get; set; }
     }
 
@@ -48,19 +46,5 @@ namespace EDispatchListener.models
         public string RequestStatus { get; set; }
 
     }
-    public class CustomerDTO
-    {
-        public string CallbackRefNumber { get; set; }
-        public string NotificationNumber { get; set; }
-        public string NotificationPreference { get; set; }
-        public bool? OptInFlag { get; set; }
-    }
 
-    public class CaseDataDTO
-    {
-        public long CaseId { get; set; }
-        public short TaskId { get; set; }
-        public short ClientId { get; set; }
-        public string Status { get; set; }
-    }
 }
