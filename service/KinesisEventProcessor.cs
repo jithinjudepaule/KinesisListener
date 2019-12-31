@@ -1,6 +1,4 @@
 ﻿using Amazon.Lambda.KinesisEvents;
-using EDispatchListener.extensions;
-using EDispatchListener.models;
 using KinesisListener.exceptions;
 
 using KinesisListener.models;
